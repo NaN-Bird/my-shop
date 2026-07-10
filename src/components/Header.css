@@ -1,0 +1,135 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: opacity 300ms ease;
+}
+
+.nav a:hover {
+    opacity: 0.6;
+}
+
+.btn {
+    padding: 8px 16px;
+    background: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 300ms ease;
+}
+
+.btn:hover {
+    background: #005fcc;
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.burger span {
+    width: 25px;
+    height: 3px;
+    background: #333;
+}
+
+/* Кошик */
+.shop-cart-button {
+    cursor: pointer;
+    transition: color, transform 300ms ease;
+}
+
+.shop-cart-button:hover,
+.shop-cart-button.active {
+    color: #dc3d3d;
+    transform: scale(1.2);
+}
+
+.shop-cart {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 400px;
+    background: #fafafa;
+    box-shadow: 4px 5px 15px -7px #606060;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.shop-cart .suma {
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.empty h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .nav {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        display: none;
+    }
+
+    .nav.open {
+        display: flex;
+    }
+
+    .burger {
+        display: flex;
+    }
+}
+.btn {
+    padding: 10px 20px;
+    background: #0077ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 300ms ease, transform 200ms ease;
+}
+
+.btn:hover {
+    background: #005fcc;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background: #004bb5;
+    transform: scale(0.95);
+}
+
