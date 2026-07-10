@@ -1,57 +1,16 @@
-import React, { useState } from "react";
-import { FaCartShopping } from "react-icons/fa6";
-import Order from "./Order";
+import React from "react";
 import "./Header.css";
 
-export default function Header(props) {
-    const [cartOpen, setCartOpen] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    const showOrders = () => {
-        let suma = 0;
-        props.orders.forEach(el => (suma += Number.parseFloat(el.price)));
-        return (
-            <div>
-                {props.orders.map(el => (
-                    <Order onDelete={props.onDelete} key={el.id} item={el} />
-                ))}
-                <p className="suma">
-                    Сума: {new Intl.NumberFormat().format(suma)} грн.
-                </p>
-            </div>
-        );
-    };
-
-    const showNothing = () => (
-        <div className="empty">
-            <h2>Товарів немає</h2>
-        </div>
-    );
-
+export default function Header() {
     return (
         <header className="header">
-            <div className="logo">House staff</div>
-            <nav className={`nav ${menuOpen ? "open" : ""}`}>
-                <a href="#home">Home</a>
-                <a href="#about">О нас</a>
-                <a href="#services">Доставка</a>
-                <a href="#contact">Контакти</a>
-                <button className="btn">Get Started</button>
+            <div className="logo">P T A S H K A</div>
+            <nav className="nav">
+                <a href="#home" data-text="Home">Home</a>
+                <a href="#about" data-text="О нас">О нас</a>
+                <a href="#services" data-text="Доставка">Доставка</a>
+                <a href="#contact" data-text="Контакти">Контакти</a>
             </nav>
-            <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <FaCartShopping
-                onClick={() => setCartOpen(prev => !prev)}
-                className={`shop-cart-button ${cartOpen ? "active" : ""}`}
-            />
-            {cartOpen && (
-                <div className="shop-cart">
-                    {props.orders.length > 0 ? showOrders() : showNothing()}
-                </div>
-            )}
         </header>
     );
 }
