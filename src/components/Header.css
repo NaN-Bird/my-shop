@@ -1,20 +1,41 @@
 .header {
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease; /* плавна анімація */
+}
+
+.header.scrolled {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* тінь з’являється при скролі */
+}
+
+
+
+/* Контейнер для обмеження ширини */
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: white;
-    border-bottom: 1px solid #eee;
 }
 
 .logo {
     font-weight: 600;
     font-size: 20px;
+    letter-spacing: 2px;
+    margin-right: 50px;
 }
 
+/* Центр меню */
 .nav {
     display: flex;
-    gap: 20px;
+    gap: 25px;
+    flex: 1;
+
 }
 
 .nav a {
@@ -24,39 +45,79 @@
     height: 24px;
     line-height: 24px;
     font-weight: 500;
-    color: transparent; /* приховуємо реальний текст */
+    color: transparent;
     text-decoration: none;
 }
 
-/* Верхній шар - спочатку зверху */
+/* Верхній шар */
 .nav a::before {
     content: attr(data-text);
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    transform: translateY(-100%); /* початково вгорі */
+    transform: translateY(-100%);
     transition: transform 500ms ease;
     color: #333;
 }
 
-/* Нижній шар - видимий за замовчуванням */
+/* Нижній шар */
 .nav a::after {
     content: attr(data-text);
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    transform: translateY(0); /* видимий */
+    transform: translateY(0);
     transition: transform 500ms ease;
     color: #333;
 }
 
-/* При hover */
+/* Hover ефект */
 .nav a:hover::before {
-    transform: translateY(0); /* спускається зверху */
+    transform: translateY(0);
+}
+.nav a:hover::after {
+    transform: translateY(100%);
 }
 
-.nav a:hover::after {
-    transform: translateY(100%); /* піднімається вниз */
+/* Праворуч блок дій */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Блок телефону */
+.phone-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Іконка трубки */
+.phone-block .icon {
+    font-size: 1.4rem;
+    color: #333;
+}
+
+/* Номер телефону */
+.phone-number {
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover — тільки номер */
+.phone-block:hover .phone-number {
+    color: #f39c12;
+}
+
+/* Кошик */
+.cart {
+    font-size: 1.4rem;
+    color: #333;
+    cursor: pointer;
+    margin-left: 70px;
 }
