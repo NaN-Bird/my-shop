@@ -7,7 +7,7 @@ export default function Footer() {
             <div className="footer-content">
                 <h2 className="footer-logo">P T S H K A</h2>
                 <ul className="footer-nav">
-                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#catalog">Колекція</a></li>
                     <li><a href="#contacts">Контакти</a></li>
                     <li><a href="#about">Про нас</a></li>
                 </ul>

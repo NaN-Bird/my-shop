@@ -20,7 +20,7 @@ export default function Header() {
                 <nav className="nav">
                     <a href="#home" data-text="Головна">Головна</a>
                     <a href="#collection" data-text="Наша колекція">Наша колекція</a>
-                    <a href="#about" data-text="О нас">О нас</a>
+                    <a href="#about" data-text="Про нас">Про нас</a>
                     <a href="#services" data-text="Доставка">Доставка</a>
                     <a href="#contact" data-text="Контакти">Контакти</a>
                 </nav>
