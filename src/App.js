@@ -6,6 +6,7 @@ import Hero from "./components/Hero";
 import HeroCategories from "./components/HeroCategories";
 import WomenPage from "./components/WomenPage";
 import MenPage from "./components/MenPage"; // 🔹 додаємо імпорт
+import ProductPage from "./components/ProductPage";
 
 class App extends React.Component {
     render() {
@@ -27,6 +28,8 @@ class App extends React.Component {
                         <Route path="/women" element={<WomenPage />} />
                         {/* Сторінка категорії Чоловіки */}
                         <Route path="/men" element={<MenPage />} />
+                        <Route path="/product/:id" element={<ProductPage />} />
+
                     </Routes>
                 </div>
             </Router>

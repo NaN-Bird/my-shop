@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CategoryPage.css";
 import { FaHeart } from "react-icons/fa";
+import { Link } from "react-router-dom"; // ✅ додаємо Link
 
 export default function CategoryPage({ title, products }) {
     return (
@@ -21,7 +22,12 @@ function ProductCard({ item }) {
     return (
         <div className="product-card">
             <div className="product-image">
-                <img src={item.image} alt={item.name} />
+                {/* ✅ Клік по фото веде на сторінку товару */}
+                <Link to={`/product/${item.id}`}>
+                    <img src={item.image} alt={item.name} />
+                </Link>
+
+                {/* ❤️ Іконка "обране" */}
                 <FaHeart
                     className={`heart-icon ${favorite ? "active" : ""}`}
                     onClick={() => setFavorite(!favorite)}
