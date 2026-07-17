@@ -1,0 +1,77 @@
+.category-page {
+    text-align: center;
+    margin: 10px auto;
+    max-width: 1460px;
+    padding: 0 20px;
+}
+
+.products-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 450px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.product-image {
+    width: 100%;
+    height: 570px;           /* фіксована висота для фото */
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);   /* збільшується тільки фото */
+}
+
+.product-info {
+    padding: 10px;
+    text-align: left;
+}
+
+.product-card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    color: #111;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #333;
+}
+
+/**/
+/* 🔹 Серце поверх фото */
+.heart-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 26px;
+    color: #ccc;       /* порожнє серце */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.heart-icon.active {
+    color: #e63946;    /* червоне серце */
+}
+
+/* Важливо: щоб серце не ламало layout */
+.product-image {
+    position: relative; /* тепер можна ставити серце всередині */
+    width: 100%;
+    height: 570px;
+    overflow: hidden;
+}
