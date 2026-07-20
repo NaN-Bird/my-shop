@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  React, { useState } from "react";
 import "./CategoryPage.css";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom"; // ✅ додаємо Link
