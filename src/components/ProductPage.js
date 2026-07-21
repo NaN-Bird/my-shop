@@ -121,7 +121,6 @@ function ProductPage({ favorites = [], toggleFavorite }) {
                     </div>
                 </div>
             </main>
-            <Footer />
         </>
     );
 }

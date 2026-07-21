@@ -1,6 +1,6 @@
 export const menProducts = [
     {
-        id: 1,
+        id:"men1",
         name: "Штани з принтом",
         price: "$59.99",
         description: "Легкі штани з етнічним візерунком.",
@@ -14,7 +14,7 @@ export const menProducts = [
         ]
     },
     {
-        id: 2,
+        id:"men2",
         name: "Футболка",
         price: "$19.99",
         description: "Базова футболка з бавовни.",
@@ -28,7 +28,7 @@ export const menProducts = [
         ]
     },
     {
-        id: 3,
+        id:"men3",
         name: "Cotton Polo Shirt",
         price: "$45.99",
         description: "Базова футболка з бавовни.",

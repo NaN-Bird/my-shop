@@ -1,6 +1,6 @@
 export const womenProducts = [
     {
-        id: 1,
+        id:"women1",
         name: "High-Waisted Denim Jeans",
         price: "$330.90",
         description: "Легкі штани з етнічним візерунком.",
@@ -14,7 +14,7 @@ export const womenProducts = [
         ]
     },
     {
-        id: 2,
+        id:"women2",
         name: "Velvet Wrap Top",
         price: "$19.99",
         description: "Базова футболка з бавовни.",
@@ -28,7 +28,7 @@ export const womenProducts = [
         ]
     },
     {
-        id: 3,
+        id:"women3",
         name: "Cotton Polo Shirt",
         price: "$45.99",
         description: "Базова футболка з бавовни.",

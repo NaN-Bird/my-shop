@@ -35,7 +35,6 @@ export default function App() {
                         <>
                             <Hero />
                             <HeroCategories />
-                            <Footer />
                         </>
                     } />
 
@@ -68,6 +67,7 @@ export default function App() {
                         }
                     />
                 </Routes>
+                <Footer />
             </div>
         </Router>
     );
