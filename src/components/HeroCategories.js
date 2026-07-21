@@ -10,31 +10,30 @@ export default function HeroCategories() {
         <section className="categories">
             <h2 className="categories-title">Наша Колекція</h2>
 
-            {/* Контейнер для сітки */}
             <div className="categories-grid">
                 <div className="category-card">
-                    <Link to="/men">
+                    <Link to="/products/men">
                         <img src={menBg} alt="Чоловікам" />
                         <span className="category-label">Чоловікам</span>
                     </Link>
                 </div>
 
                 <div className="category-card">
-                    <Link to="/bedding">
+                    <Link to="/products/bedding">
                         <img src={beddingBg} alt="Постільна білизна" />
                         <span className="category-label">Постільна білизна</span>
                     </Link>
                 </div>
 
                 <div className="category-card">
-                    <Link to="/women">
+                    <Link to="/products/women">
                         <img src={womenBg} alt="Жінкам" />
                         <span className="category-label">Жінкам</span>
                     </Link>
                 </div>
 
                 <div className="category-card">
-                    <Link to="/pajamas">
+                    <Link to="/products/pajamas">
                         <img src={pajamasBg} alt="Піжами" />
                         <span className="category-label">Піжами</span>
                     </Link>

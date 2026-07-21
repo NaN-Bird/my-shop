@@ -2,12 +2,35 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import { menProducts } from "../data/menProducts"; // або womenProducts
+import { menProducts } from "../data/menProducts";
+import { womenProducts } from "../data/womenProducts";
+import { beddingProducts } from "../data/beddingProducts";
+import { pajamasProducts } from "../data/pajamasProducts";
 import "./ProductPage.css";
 
-function ProductPage() {
-    const { id } = useParams();
-    const product = menProducts.find((p) => p.id.toString() === id);
+function ProductPage({ favorites = [], toggleFavorite }) {
+    const { category, id } = useParams();
+
+    // 🔹 Вибираємо масив залежно від категорії
+    let products = [];
+    switch (category) {
+        case "men":
+            products = menProducts;
+            break;
+        case "women":
+            products = womenProducts;
+            break;
+        case "bedding":
+            products = beddingProducts;
+            break;
+        case "pajamas":
+            products = pajamasProducts;
+            break;
+        default:
+            products = [];
+    }
+
+    const product = products.find((p) => p.id.toString() === id);
 
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedImage, setSelectedImage] = useState(product?.image);
@@ -15,13 +38,13 @@ function ProductPage() {
 
     if (!product) {
         return (
-            <>
-                <Header />
+
+
                 <main className="product-page">
                     <p>Товар не знайдено</p>
                 </main>
-                <Footer />
-            </>
+
+
         );
     }
 
@@ -36,13 +59,13 @@ function ProductPage() {
         setImages(updatedImages);
     };
 
+    const isFavorite = favorites.includes(product.id);
+
     return (
         <>
-            <Header />
             <main className="product-page">
                 <div className="product-container">
                     <div className="product-image">
-                        {/* 🔹 Головне фото */}
                         <div className="main-image">
                             <img
                                 src={selectedImage}
@@ -52,7 +75,6 @@ function ProductPage() {
                             />
                         </div>
 
-                        {/* 🔹 Прев’ю вертикально праворуч */}
                         {images.length > 0 && (
                             <div className="thumbnails-vertical">
                                 {images.map((img, index) => (
@@ -75,7 +97,6 @@ function ProductPage() {
                         <p className="sku">SKU: {product.sku}</p>
                         <p className="category">Category: {product.category}</p>
 
-                        {/* 🔹 Клікабельні розміри */}
                         <div className="sizes">
                             {["XS","S","M","L","XL","XXL"].map((size) => (
                                 <button
@@ -88,7 +109,15 @@ function ProductPage() {
                             ))}
                         </div>
 
-                        <button className="add-to-cart">Add to Cart</button>
+                        <button className="add-to-cart">Додати в кошик</button>
+
+                        {/* ❤️ Кнопка для обраного */}
+                        <button
+                            className={`favorite-btn ${isFavorite ? "active" : ""}`}
+                            onClick={() => toggleFavorite(product)}
+                        >
+                            {isFavorite ? "Видалити з обраного ❤️" : "Додати в обране 🤍"}
+                        </button>
                     </div>
                 </div>
             </main>
