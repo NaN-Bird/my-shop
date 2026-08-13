@@ -5,7 +5,7 @@ export const menProducts = [
         price: "$59.99",
         description: "Легкі штани з етнічним візерунком.",
         sku: "PANTS-001",
-        category: "Men",
+        category: "men",
         image: "/img/men/2.jpg", // головне фото
         images: [
             "/img/men/2-1.jpg",
@@ -19,7 +19,7 @@ export const menProducts = [
         price: "$19.99",
         description: "Базова футболка з бавовни.",
         sku: "TSHIRT-002",
-        category: "Men",
+        category: "men",
         image: "/img/men/1.jpg",
         images: [
             "/img/men/2-1.jpg",
@@ -33,7 +33,7 @@ export const menProducts = [
         price: "$45.99",
         description: "Базова футболка з бавовни.",
         sku: "TSHIRT-003",
-        category: "Men",
+        category: "men",
         image: "/img/men/3.jpg",
         images: [
             "/img/men/2-1.jpg",

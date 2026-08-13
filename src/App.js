@@ -7,7 +7,7 @@ import HeroCategories from "./components/HeroCategories";
 import CategoryPage from "./components/CategoryPage";
 import ProductPage from "./components/ProductPage";
 import FavoritesPage from "./components/FavoritesPage";
-
+import CartPage from "./components/CartPage";
 import { menProducts } from "./data/menProducts";
 import { womenProducts } from "./data/womenProducts";
 import { beddingProducts } from "./data/beddingProducts";
@@ -15,6 +15,16 @@ import { pajamasProducts } from "./data/pajamasProducts";
 
 export default function App() {
     const [favorites, setFavorites] = useState([]);
+
+    const [cart, setCart] = useState([]);
+
+    const addToCart = (product) => {
+        setCart((prev) => [...prev, product]);
+    };
+
+    const removeFromCart = (id) => {
+        setCart((prev) => prev.filter(item => item.id !== id));
+    };
 
     const toggleFavorite = (product) => {
         setFavorites((prev) =>
@@ -28,7 +38,7 @@ export default function App() {
         <Router>
             <div className="wrapper">
                 {/* ✅ Header завжди отримує favorites */}
-                <Header favorites={favorites} />
+                <Header favorites={favorites} cart={cart} />
                 <Routes>
                     {/* Головна сторінка */}
                     <Route path="/" element={
@@ -47,8 +57,9 @@ export default function App() {
                     {/* Сторінка товару */}
                     <Route
                         path="/products/:category/:id"
-                        element={<ProductPage favorites={favorites} toggleFavorite={toggleFavorite} />}
+                        element={<ProductPage favorites={favorites} toggleFavorite={toggleFavorite} addToCart={addToCart} />}
                     />
+
 
                     {/* Обране */}
                     <Route
@@ -66,6 +77,11 @@ export default function App() {
                             />
                         }
                     />
+                    <Route
+                        path="/cart"
+                        element={<CartPage cart={cart} removeFromCart={removeFromCart} />}
+                    />
+
                 </Routes>
                 <Footer />
             </div>

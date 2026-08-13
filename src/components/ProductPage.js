@@ -8,7 +8,7 @@ import { beddingProducts } from "../data/beddingProducts";
 import { pajamasProducts } from "../data/pajamasProducts";
 import "./ProductPage.css";
 
-function ProductPage({ favorites = [], toggleFavorite }) {
+function ProductPage({ favorites = [], toggleFavorite,addToCart }) {
     const { category, id } = useParams();
 
     // 🔹 Вибираємо масив залежно від категорії
@@ -109,8 +109,6 @@ function ProductPage({ favorites = [], toggleFavorite }) {
                             ))}
                         </div>
 
-                        <button className="add-to-cart">Додати в кошик</button>
-
                         {/* ❤️ Кнопка для обраного */}
                         <button
                             className={`favorite-btn ${isFavorite ? "active" : ""}`}
@@ -118,6 +116,10 @@ function ProductPage({ favorites = [], toggleFavorite }) {
                         >
                             {isFavorite ? "Видалити з обраного ❤️" : "Додати в обране 🤍"}
                         </button>
+
+                        {/*<button className="add-to-cart">Додати в кошик</button>*/}
+                        <button className="add-to-cart" onClick={() => addToCart(product)}>Додати в кошик 🛒</button>
+
                     </div>
                 </div>
             </main>

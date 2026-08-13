@@ -1,0 +1,30 @@
+.cart-page {
+    padding: 20px;
+}
+
+.cart-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cart-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.cart-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.cart-card button {
+    margin-top: 10px;
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
