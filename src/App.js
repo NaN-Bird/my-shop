@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,20 +12,81 @@ import { menProducts } from "./data/menProducts";
 import { womenProducts } from "./data/womenProducts";
 import { beddingProducts } from "./data/beddingProducts";
 import { pajamasProducts } from "./data/pajamasProducts";
+import CheckoutPage from "./components/CheckoutPage";
 
 export default function App() {
-    const [favorites, setFavorites] = useState([]);
+    // ✅ Favorites з localStorage
+    const [favorites, setFavorites] = useState(() => {
+        const savedFavorites = localStorage.getItem("favorites");
+        if (savedFavorites) {
+            try {
+                return JSON.parse(savedFavorites);
+            } catch (e) {
+                console.error("Помилка читання favorites:", e);
+                return [];
+            }
+        }
+        return [];
+    });
 
-    const [cart, setCart] = useState([]);
+    // ✅ Cart з localStorage
+    const [cart, setCart] = useState(() => {
+        const savedCart = localStorage.getItem("cart");
+        if (savedCart) {
+            try {
+                const parsed = JSON.parse(savedCart);
+                return parsed.map(item =>
+                    item.quantity ? item : { ...item, quantity: 1 }
+                );
+            } catch (e) {
+                console.error("Помилка читання кошика:", e);
+                return [];
+            }
+        }
+        return [];
+    });
 
+    // ✅ Зберігаємо favorites при кожній зміні
+    useEffect(() => {
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    }, [favorites]);
+
+    // ✅ Зберігаємо cart при кожній зміні
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
+
+    // ✅ Додавання у кошик
     const addToCart = (product) => {
-        setCart((prev) => [...prev, product]);
+        setCart((prev) => {
+            const existing = prev.find((item) => item.id === product.id);
+            if (existing) {
+                return prev.map((item) =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
+            } else {
+                return [...prev, { ...product, quantity: 1 }];
+            }
+        });
     };
 
+    // ✅ Видалення з кошика
     const removeFromCart = (id) => {
         setCart((prev) => prev.filter(item => item.id !== id));
     };
 
+    // ✅ Оновлення кількості
+    const updateQuantity = (id, newQuantity) => {
+        setCart((prev) =>
+            prev.map((item) =>
+                item.id === id ? { ...item, quantity: newQuantity } : item
+            )
+        );
+    };
+
+    // ✅ Додавання/видалення з обраних
     const toggleFavorite = (product) => {
         setFavorites((prev) =>
             prev.includes(product.id)
@@ -37,51 +98,14 @@ export default function App() {
     return (
         <Router>
             <div className="wrapper">
-                {/* ✅ Header завжди отримує favorites */}
                 <Header favorites={favorites} cart={cart} />
                 <Routes>
-                    {/* Головна сторінка */}
-                    <Route path="/" element={
-                        <>
-                            <Hero />
-                            <HeroCategories />
-                        </>
-                    } />
-
-                    {/* Категорії */}
-                    <Route
-                        path="/products/:category"
-                        element={<CategoryPage favorites={favorites} toggleFavorite={toggleFavorite} />}
-                    />
-
-                    {/* Сторінка товару */}
-                    <Route
-                        path="/products/:category/:id"
-                        element={<ProductPage favorites={favorites} toggleFavorite={toggleFavorite} addToCart={addToCart} />}
-                    />
-
-
-                    {/* Обране */}
-                    <Route
-                        path="/favorites"
-                        element={
-                            <FavoritesPage
-                                favorites={favorites}
-                                products={[
-                                    ...menProducts,
-                                    ...womenProducts,
-                                    ...beddingProducts,
-                                    ...pajamasProducts
-                                ]}
-                                toggleFavorite={toggleFavorite}
-                            />
-                        }
-                    />
-                    <Route
-                        path="/cart"
-                        element={<CartPage cart={cart} removeFromCart={removeFromCart} />}
-                    />
-
+                    <Route path="/" element={<><Hero /><HeroCategories /></>} />
+                    <Route path="/products/:category" element={<CategoryPage favorites={favorites} toggleFavorite={toggleFavorite} />} />
+                    <Route path="/products/:category/:id" element={<ProductPage favorites={favorites} toggleFavorite={toggleFavorite} addToCart={addToCart} />} />
+                    <Route path="/favorites" element={<FavoritesPage favorites={favorites} products={[...menProducts, ...womenProducts, ...beddingProducts, ...pajamasProducts]} toggleFavorite={toggleFavorite} />} />
+                    <Route path="/cart" element={<CartPage cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
                 </Routes>
                 <Footer />
             </div>

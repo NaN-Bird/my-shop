@@ -1,5 +1,17 @@
 .cart-page {
-    padding: 20px;
+    padding: 40px;
+    text-align: center;
+}
+
+.cart-page h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cart-page p {
+    font-size: 1.2rem;
+    color: #777;
 }
 
 .cart-grid {
@@ -27,4 +39,31 @@
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.qty-btn {
+    padding: 6px 12px;
+    border: 1px solid #333;
+    background: #f9f9f9;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.qty-btn:hover {
+    background: #eee;
+}
+
+.qty-value {
+    min-width: 24px;
+    text-align: center;
+    font-weight: bold;
 }
