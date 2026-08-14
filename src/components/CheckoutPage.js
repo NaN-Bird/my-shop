@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-
+import "./CheckoutPage.css"
 export default function CheckoutPage() {
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
         email: "",
-        quantity: 1,
         comment: ""
     });
 
@@ -26,7 +25,7 @@ export default function CheckoutPage() {
             <h1>Оформлення замовлення 🛍️</h1>
             <form onSubmit={handleSubmit} className="checkout-form">
                 <label>
-                    Ім’я та прізвище:
+                    Ваше Ім’я:
                     <input type="text" name="name" value={formData.name} onChange={handleChange} required />
                 </label>
 
@@ -38,11 +37,6 @@ export default function CheckoutPage() {
                 <label>
                     Email (опційно):
                     <input type="email" name="email" value={formData.email} onChange={handleChange} />
-                </label>
-
-                <label>
-                    Кількість:
-                    <input type="number" name="quantity" value={formData.quantity} min="1" onChange={handleChange} required />
                 </label>
 
                 <label>

@@ -13,6 +13,9 @@
     font-size: 1.2rem;
     color: #777;
 }
+.cart-page h2 {
+    margin-top: 20px;
+}
 
 .cart-grid {
     display: flex;
@@ -66,4 +69,27 @@
     min-width: 24px;
     text-align: center;
     font-weight: bold;
+}
+.checkout-btn {
+    background: #28a745; /* зелений колір */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.checkout-btn:hover {
+    background: #218838; /* темніший зелений при наведенні */
+    transform: scale(1.05); /* легке збільшення */
+}
+
+.checkout-btn:active {
+    background: #1e7e34; /* ще темніший при кліку */
+    transform: scale(0.98); /* легке стискання */
 }

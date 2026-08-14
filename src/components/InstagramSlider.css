@@ -1,0 +1,18 @@
+.instagram-slider {
+    margin: 40px auto;
+    max-width: 900px;
+}
+
+.instagram-slider img,
+.instagram-slider video {
+    width: 100%;
+    aspect-ratio: 1 / 1;   /* ✅ робить квадрат */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+.instagram-slider img:hover,
+.instagram-slider video:hover {
+    transform: scale(1.05);
+}

@@ -13,6 +13,7 @@ import { womenProducts } from "./data/womenProducts";
 import { beddingProducts } from "./data/beddingProducts";
 import { pajamasProducts } from "./data/pajamasProducts";
 import CheckoutPage from "./components/CheckoutPage";
+import InstagramSlider from "./components/InstagramSlider";
 
 export default function App() {
     // ✅ Favorites з localStorage
@@ -100,7 +101,7 @@ export default function App() {
             <div className="wrapper">
                 <Header favorites={favorites} cart={cart} />
                 <Routes>
-                    <Route path="/" element={<><Hero /><HeroCategories /></>} />
+                    <Route path="/" element={<><Hero /><HeroCategories /><InstagramSlider /></>} />
                     <Route path="/products/:category" element={<CategoryPage favorites={favorites} toggleFavorite={toggleFavorite} />} />
                     <Route path="/products/:category/:id" element={<ProductPage favorites={favorites} toggleFavorite={toggleFavorite} addToCart={addToCart} />} />
                     <Route path="/favorites" element={<FavoritesPage favorites={favorites} products={[...menProducts, ...womenProducts, ...beddingProducts, ...pajamasProducts]} toggleFavorite={toggleFavorite} />} />
@@ -112,3 +113,4 @@ export default function App() {
         </Router>
     );
 }
+
