@@ -1,0 +1,186 @@
+/* ===== Delivery Page ===== */
+.delivery-page-wrapper {
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    color: #2c3e50;
+}
+
+.delivery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== Hero ===== */
+.delivery-hero {
+    background: linear-gradient(135deg, #eef2f7 0%, #d9e2ec 100%);
+    padding: 70px 20px 50px;
+    text-align: center;
+}
+
+.delivery-hero-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+.delivery-hero-sub {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ===== Секції ===== */
+.delivery-section,
+.delivery-payment,
+.delivery-faq {
+    padding: 60px 0;
+}
+
+.delivery-section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #2c3e50;
+}
+
+/* ===== Cards ===== */
+.delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.delivery-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.delivery-card.delivery-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delivery-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.delivery-icon {
+    font-size: 2.6rem;
+    margin-bottom: 12px;
+}
+
+.delivery-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.delivery-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.delivery-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.delivery-list li {
+    padding: 4px 0;
+}
+
+/* ===== Payment ===== */
+.delivery-payment {
+    background: #f8f9fb;
+}
+
+.delivery-payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.delivery-block {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.delivery-block.delivery-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.payment-icon {
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+}
+
+.delivery-block h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.delivery-block p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+/* ===== FAQ ===== */
+.delivery-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.faq-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.faq-item p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .delivery-hero-title {
+        font-size: 2rem;
+    }
+    .delivery-grid {
+        grid-template-columns: 1fr;
+    }
+    .delivery-payment-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .delivery-payment-grid {
+        grid-template-columns: 1fr;
+    }
+}

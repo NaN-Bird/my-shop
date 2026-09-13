@@ -1,0 +1,150 @@
+.admin-reviews {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.reviews-header-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.reviews-header-admin h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.btn-back {
+    padding: 10px 20px;
+    background: #2c3e50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-back:hover {
+    background: #1a252f;
+}
+
+.reviews-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.reviews-filters button {
+    padding: 8px 16px;
+    background: #f0f2f5;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.reviews-filters button.active {
+    background: #2c3e50;
+    color: #fff;
+    border-color: #2c3e50;
+}
+
+.reviews-list-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-card-admin {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid #ddd;
+}
+
+.review-card-admin.status-pending { border-left-color: #f39c12; }
+.review-card-admin.status-approved { border-left-color: #27ae60; }
+.review-card-admin.status-rejected { border-left-color: #e74c3c; }
+
+.review-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.review-status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.review-status.status-pending { background: #fff3cd; color: #856404; }
+.review-status.status-approved { background: #d4edda; color: #155724; }
+.review-status.status-rejected { background: #f8d7da; color: #721c24; }
+
+.review-text {
+    font-style: italic;
+    color: #555;
+    margin: 12px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.review-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-approve,
+.btn-reject,
+.btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-approve {
+    background: #27ae60;
+    color: #fff;
+}
+.btn-approve:hover { background: #219a52; }
+
+.btn-reject {
+    background: #e74c3c;
+    color: #fff;
+}
+.btn-reject:hover { background: #c0392b; }
+
+.btn-delete {
+    background: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+}
+.btn-delete:hover { background: #f0f0f0; }
+
+.empty-message {
+    text-align: center;
+    color: #999;
+    padding: 60px 20px;
+    font-size: 18px;
+}

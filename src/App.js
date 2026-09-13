@@ -1,116 +1,213 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
+// ===== КОМПОНЕНТИ =====
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import HeroCategories from "./components/HeroCategories";
-import CategoryPage from "./components/CategoryPage";
-import ProductPage from "./components/ProductPage";
 import FavoritesPage from "./components/FavoritesPage";
 import CartPage from "./components/CartPage";
-import { menProducts } from "./data/menProducts";
-import { womenProducts } from "./data/womenProducts";
-import { beddingProducts } from "./data/beddingProducts";
-import { pajamasProducts } from "./data/pajamasProducts";
 import CheckoutPage from "./components/CheckoutPage";
-import InstagramSlider from "./components/InstagramSlider";
+
+// ===== СТОРІНКИ =====
+import HomePage from "./pages/HomePage";
+import CollectionPage from "./pages/CollectionPage";
+import CategoryPage from "./pages/CategoryPage";
+import ProductPage from "./pages/ProductPage";
+import AboutPage from "./pages/AboutPage";
+import DeliveryPage from "./pages/DeliveryPage";
+import ContactsPage from "./pages/ContactsPage";
+import AdminPanel from "./pages/AdminPanel";
+import AdminLogin from "./pages/AdminLogin";
+import AdminOrders from "./pages/AdminOrders";
+import AdminCategories from "./pages/AdminCategories";
+import ReviewsPage from "./pages/ReviewsPage";
+import AdminReviews from "./pages/AdminReviews";
+import AdminInstagram from "./pages/AdminInstagram";
+
+
+// ===== ЗАХИСТ МАРШРУТІВ =====
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
-    // ✅ Favorites з localStorage
+    // ===== FAVORITES (з localStorage) =====
     const [favorites, setFavorites] = useState(() => {
-        const savedFavorites = localStorage.getItem("favorites");
-        if (savedFavorites) {
-            try {
-                return JSON.parse(savedFavorites);
-            } catch (e) {
-                console.error("Помилка читання favorites:", e);
-                return [];
-            }
+        const saved = localStorage.getItem("favorites");
+        try {
+            return saved ? JSON.parse(saved) : [];
+        } catch {
+            return [];
         }
-        return [];
     });
 
-    // ✅ Cart з localStorage
+    // ===== CART (з localStorage) =====
     const [cart, setCart] = useState(() => {
-        const savedCart = localStorage.getItem("cart");
-        if (savedCart) {
-            try {
-                const parsed = JSON.parse(savedCart);
-                return parsed.map(item =>
-                    item.quantity ? item : { ...item, quantity: 1 }
-                );
-            } catch (e) {
-                console.error("Помилка читання кошика:", e);
-                return [];
-            }
+        const saved = localStorage.getItem("cart");
+        try {
+            return saved ? JSON.parse(saved) : [];
+        } catch {
+            return [];
         }
-        return [];
     });
 
-    // ✅ Зберігаємо favorites при кожній зміні
+    // ===== ЗБЕРЕЖЕННЯ В localStorage =====
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites));
     }, [favorites]);
 
-    // ✅ Зберігаємо cart при кожній зміні
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
 
-    // ✅ Додавання у кошик
+    // ===== ДОДАТИ В КОШИК =====
     const addToCart = (product) => {
         setCart((prev) => {
-            const existing = prev.find((item) => item.id === product.id);
+            const existing = prev.find((item) => item._id === product._id);
             if (existing) {
                 return prev.map((item) =>
-                    item.id === product.id
-                        ? { ...item, quantity: item.quantity + 1 }
+                    item._id === product._id
+                        ? {...item, quantity: (item.quantity || 1) + 1}
                         : item
                 );
-            } else {
-                return [...prev, { ...product, quantity: 1 }];
             }
+            return [...prev, {...product, quantity: 1}];
         });
     };
 
-    // ✅ Видалення з кошика
+    // ===== ВИДАЛИТИ З КОШИКА =====
     const removeFromCart = (id) => {
-        setCart((prev) => prev.filter(item => item.id !== id));
+        setCart((prev) => prev.filter((item) => item._id !== id));
     };
 
-    // ✅ Оновлення кількості
+    // ===== ОНОВИТИ КІЛЬКІСТЬ =====
     const updateQuantity = (id, newQuantity) => {
+        if (newQuantity <= 0) {
+            removeFromCart(id);
+            return;
+        }
         setCart((prev) =>
             prev.map((item) =>
-                item.id === id ? { ...item, quantity: newQuantity } : item
+                item._id === id ? {...item, quantity: newQuantity} : item
             )
         );
     };
 
-    // ✅ Додавання/видалення з обраних
+    // ===== ОЧИЩЕННЯ КОШИКА =====
+    const clearCart = () => {
+        setCart([]);
+        localStorage.removeItem("cart");
+    };
+
+    // ===== ДОДАТИ/ВИДАЛИТИ З ОБРАНИХ =====
     const toggleFavorite = (product) => {
         setFavorites((prev) =>
-            prev.includes(product.id)
-                ? prev.filter((id) => id !== product.id)
-                : [...prev, product.id]
+            prev.includes(product._id)
+                ? prev.filter((id) => id !== product._id)
+                : [...prev, product._id]
         );
     };
 
     return (
         <Router>
             <div className="wrapper">
-                <Header favorites={favorites} cart={cart} />
-                <Routes>
-                    <Route path="/" element={<><Hero /><HeroCategories /><InstagramSlider /></>} />
-                    <Route path="/products/:category" element={<CategoryPage favorites={favorites} toggleFavorite={toggleFavorite} />} />
-                    <Route path="/products/:category/:id" element={<ProductPage favorites={favorites} toggleFavorite={toggleFavorite} addToCart={addToCart} />} />
-                    <Route path="/favorites" element={<FavoritesPage favorites={favorites} products={[...menProducts, ...womenProducts, ...beddingProducts, ...pajamasProducts]} toggleFavorite={toggleFavorite} />} />
-                    <Route path="/cart" element={<CartPage cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />} />
-                    <Route path="/checkout" element={<CheckoutPage />} />
-                </Routes>
-                <Footer />
+                <Header favorites={favorites} cart={cart}/>
+                <main>
+                    <Routes>
+                        {/* ===== ПУБЛІЧНІ МАРШРУТИ ===== */}
+                        <Route path="/" element={<HomePage/>}/>
+                        <Route path="/collection" element={<CollectionPage/>}/>
+                        <Route
+                            path="/products/:category"
+                            element={
+                                <CategoryPage
+                                    favorites={favorites}
+                                    toggleFavorite={toggleFavorite}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/products/:category/:id"
+                            element={
+                                <ProductPage
+                                    favorites={favorites}
+                                    toggleFavorite={toggleFavorite}
+                                    addToCart={addToCart}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/favorites"
+                            element={
+                                <FavoritesPage
+                                    favorites={favorites}
+                                    toggleFavorite={toggleFavorite}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/cart"
+                            element={
+                                <CartPage
+                                    cart={cart}
+                                    removeFromCart={removeFromCart}
+                                    updateQuantity={updateQuantity}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/checkout"
+                            element={<CheckoutPage cart={cart} clearCart={clearCart}/>}
+                        />
+                        <Route path="/about" element={<AboutPage/>}/>
+                        <Route path="/delivery" element={<DeliveryPage/>}/>
+                        <Route path="/contacts" element={<ContactsPage/>}/>
+
+                        {/* ===== АДМІНКА (ЗАХИЩЕНА) ===== */}
+                        <Route path="/admin/login" element={<AdminLogin/>}/>
+                        <Route
+                            path="/admin"
+                            element={
+                                <ProtectedRoute>
+                                    <AdminPanel/>
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/admin/orders"
+                            element={
+                                <ProtectedRoute>
+                                    <AdminOrders/>
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/admin/categories"
+                            element={
+                                <ProtectedRoute>
+                                    <AdminCategories/>
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route path="/reviews" element={<ReviewsPage />} />
+                        <Route
+                            path="/admin/reviews"
+                            element={
+                                <ProtectedRoute>
+                                    <AdminReviews />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/admin/instagram"
+                            element={
+                                <ProtectedRoute>
+                                    <AdminInstagram />
+                                </ProtectedRoute>
+                            }
+                        />
+                    </Routes>
+                </main>
+                <Footer/>
             </div>
         </Router>
     );
 }
-

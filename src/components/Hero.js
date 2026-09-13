@@ -1,33 +1,63 @@
-import React from "react";
-import { Link } from "react-router-dom"; // якщо використовуєш react-router
-import menBg from "../assets/men.jpg";
-import womenBg from "../assets/women.jpg";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 export default function Hero() {
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/categories")
+            .then((res) => res.json())
+            .then((data) => {
+                // Беремо перші 2 категорії
+                setCategories(data.slice(0, 2));
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Помилка завантаження категорій:", err);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="hero">
+                <div className="hero-loading">⏳ Завантаження...</div>
+            </section>
+        );
+    }
+
+    if (categories.length < 2) {
+        return (
+            <section className="hero">
+                <div className="hero-loading">
+                    Додайте мінімум 2 категорії в адмінці, щоб вони з'явилися тут
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="hero">
-            {/* Чоловічий блок */}
-            <div className="hero-block men">
-                <Link to="/products/men" className="hero-link">
-                    <img src={menBg} alt="For Men" className="hero-img" />
-                    <div className="hero-banner men-banner">
-                        <span className="banner-text">Чоловікам</span>
-                        <span className="banner-link">КУПУВАТИ</span>
-                    </div>
-                </Link>
-            </div>
-
-            {/* Жіночий блок */}
-            <div className="hero-block women">
-                <Link to="/products/women" className="hero-link">
-                    <img src={womenBg} alt="For Women" className="hero-img" />
-                    <div className="hero-banner women-banner">
-                        <span className="banner-text">Жінкам</span>
-                        <span className="banner-link">КУПУВАТИ</span>
-                    </div>
-                </Link>
-            </div>
+            {categories.map((category, index) => (
+                <div
+                    key={category._id}
+                    className={`hero-block ${index === 0 ? "men" : "women"}`}
+                >
+                    <Link to={`/products/${category.slug}`} className="hero-link">
+                        <img
+                            src={category.image || "https://via.placeholder.com/800x600?text=No+Image"}
+                            alt={category.name}
+                            className="hero-img"
+                        />
+                        <div className={`hero-banner ${index === 0 ? "men-banner" : "women-banner"}`}>
+                            <span className="banner-text">{category.name}</span>
+                            <span className="banner-link">КУПУВАТИ</span>
+                        </div>
+                    </Link>
+                </div>
+            ))}
         </section>
     );
 }

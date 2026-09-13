@@ -1,8 +1,8 @@
 .footer {
     background: #f5f5f5;
-    padding: 30px 20px;
-    text-align: center;
+    padding: 40px 20px 20px;
     border-top: 1px solid #ddd;
+    margin-top: 40px;
 }
 
 .footer-content {
@@ -10,38 +10,162 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 15px;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    gap: 20px;
 }
 
 .footer-logo {
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #333;
+    margin: 0;
 }
 
 .footer-nav {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
 }
 
 .footer-nav li a {
     text-decoration: none;
     color: #333;
-    transition: opacity 300ms ease;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.footer-nav li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #f39c12;
+    transition: width 0.3s ease;
 }
 
 .footer-nav li a:hover {
-    opacity: 0.6;
+    color: #f39c12;
+}
+
+.footer-nav li a:hover::after {
+    width: 100%;
+}
+
+.footer-social {
+    display: flex;
+    gap: 16px;
 }
 
 .footer-social a {
-    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
     text-decoration: none;
-    color: #0077ff;
     font-weight: 600;
+    font-size: 13px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+    background: #f39c12;
+    transform: translateY(-3px);
 }
 
 .footer-copy {
     font-size: 14px;
     color: #777;
+    text-align: center;
+    margin: 0;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== АДАПТИВНІСТЬ ===== */
+
+/* Планшети та маленькі екрани (до 768px) */
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 16px 16px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px 24px;
+    }
+
+    .footer-logo {
+        font-size: 20px;
+    }
+
+    .footer-social {
+        gap: 12px;
+    }
+
+    .footer-social a {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+}
+
+/* Мобільні телефони (до 480px) */
+@media (max-width: 480px) {
+    .footer {
+        padding: 24px 12px 12px;
+    }
+
+    .footer-logo {
+        font-size: 18px;
+    }
+
+    .footer-nav {
+        gap: 12px 18px;
+    }
+
+    .footer-nav li a {
+        font-size: 14px;
+    }
+
+    .footer-social a {
+        width: 32px;
+        height: 32px;
+        font-size: 11px;
+    }
+
+    .footer-copy {
+        font-size: 12px;
+        padding-top: 12px;
+    }
+}
+.footer-social .social-fb:hover {
+    background: #1877f2; /* Facebook blue */
+}
+
+.footer-social .social-ig:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.footer-social .social-tg:hover {
+    background: #0088cc; /* Telegram blue */
 }

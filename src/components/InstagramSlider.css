@@ -1,18 +1,90 @@
 .instagram-slider {
     margin: 40px auto;
-    max-width: 900px;
+    max-width: 1650px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.instagram-slider h2 {
+    margin-bottom: 40px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.instagram-slider .swiper {
+    max-width: 1650px;
+    margin: 0 auto;
+    padding: 10px 0;
 }
 
 .instagram-slider img,
 .instagram-slider video {
     width: 100%;
-    aspect-ratio: 1 / 1;   /* ✅ робить квадрат */
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
-
 
 .instagram-slider img:hover,
 .instagram-slider video:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== АДАПТИВНІСТЬ ===== */
+
+/* Планшети (768-1024px) */
+@media (max-width: 1024px) {
+    .instagram-slider {
+        margin: 30px auto;
+        padding: 0 16px;
+    }
+
+    .instagram-slider h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .instagram-slider img,
+    .instagram-slider video {
+        border-radius: 10px;
+    }
+}
+
+/* Мобільні телефони (до 768px) */
+@media (max-width: 768px) {
+    .instagram-slider {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    .instagram-slider h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .instagram-slider img,
+    .instagram-slider video {
+        border-radius: 8px;
+    }
+}
+
+/* Дуже маленькі телефони (до 480px) */
+@media (max-width: 480px) {
+    .instagram-slider {
+        margin: 16px auto;
+        padding: 0 8px;
+    }
+
+    .instagram-slider h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    .instagram-slider img,
+    .instagram-slider video {
+        border-radius: 6px;
+    }
 }

@@ -27,3 +27,8 @@ Thumbs.db
 .env.development.local
 .env.test.local
 .env.production.local
+
+# ===== SERVER =====
+server/node_modules/
+server/env
+server/.env

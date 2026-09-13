@@ -1,41 +1,69 @@
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import "./InstagramSlider.css";
 
 export default function InstagramSlider() {
-    const media = [
-        { type: "image", src: "/assets/insta1.webp" },
-        { type: "image", src: "/assets/insta2.webp" },
-        { type: "image", src: "/assets/insta3.webp" },
-        { type: "image", src: "/assets/insta4.webp" },
-        { type: "video", src: "/assets/insta5.mp4" },
-        { type: "image", src: "/assets/insta6.jpg" },
-        { type: "video", src: "/assets/insta7.mp4" },
-    ];
+    const [media, setMedia] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/instagram")
+            .then((res) => res.json())
+            .then((data) => {
+                setMedia(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Помилка:", err);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="instagram-slider">
+                <h2>Ми в Instagram 📸</h2>
+                <p style={{ textAlign: "center", color: "#888" }}>⏳ Завантаження...</p>
+            </section>
+        );
+    }
+
+    if (media.length === 0) {
+        return (
+            <section className="instagram-slider">
+                <h2>Ми в Instagram 📸</h2>
+                <p style={{ textAlign: "center", color: "#888" }}>Фото поки немає</p>
+            </section>
+        );
+    }
 
     return (
         <section className="instagram-slider">
             <h2>Ми в Instagram 📸</h2>
             <Swiper
                 modules={[Autoplay]}
-
-                spaceBetween={10}
-                slidesPerView={3}
+                spaceBetween={20}
+                slidesPerView={5}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 loop={true}
+                breakpoints={{
+                    0: { slidesPerView: 1.2, spaceBetween: 12 },
+                    480: { slidesPerView: 2.2, spaceBetween: 16 },
+                    768: { slidesPerView: 3.2, spaceBetween: 20 },
+                    1024: { slidesPerView: 4.2, spaceBetween: 24 },
+                    1280: { slidesPerView: 5, spaceBetween: 30 },
+                }}
             >
                 {media.map((item, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide key={item._id}>
                         <a
-                            href="https://instagram.com/твій_профіль"
+                            href={item.link || "https://www.instagram.com/ptashka_ukrain/"}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            {item.type === "image" ? (
-                                <img src={item.src} alt={`Instagram ${index + 1}`} />
-                            ) : (
-                                <video src={item.src} autoPlay muted loop playsInline />
-                            )}
+                            <img src={item.image} alt={`Instagram ${index + 1}`} />
                         </a>
                     </SwiperSlide>
                 ))}

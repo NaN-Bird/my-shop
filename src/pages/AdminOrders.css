@@ -1,0 +1,324 @@
+/* ===== АДМІНКА ЗАМОВЛЕНЬ ===== */
+.admin-orders {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ===== ЗАГОЛОВОК ===== */
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.orders-header h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.btn-back {
+    padding: 10px 20px;
+    background: #2c3e50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-back:hover {
+    background: #1a252f;
+}
+
+/* ===== ФІЛЬТРИ ===== */
+.orders-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.orders-filters button {
+    padding: 8px 16px;
+    background: #f0f2f5;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.orders-filters button:hover {
+    background: #e0e4e8;
+}
+
+.orders-filters button.active {
+    background: #2c3e50;
+    color: #fff;
+    border-color: #2c3e50;
+}
+
+/* ===== СПИСОК ===== */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== КАРТКА ЗАМОВЛЕННЯ ===== */
+.order-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+}
+
+/* ===== ЗАГОЛОВОК КАРТКИ ===== */
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 12px;
+}
+
+.order-number {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.order-date {
+    font-size: 13px;
+    color: #888;
+}
+
+/* ===== СТАТУС ===== */
+.status-select {
+    padding: 8px 14px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #fff;
+}
+
+.status-select.status-new { border-color: #3498db; color: #3498db; }
+.status-select.status-processing { border-color: #f39c12; color: #f39c12; }
+.status-select.status-shipped { border-color: #9b59b6; color: #9b59b6; }
+.status-select.status-completed { border-color: #27ae60; color: #27ae60; }
+.status-select.status-cancelled { border-color: #e74c3c; color: #e74c3c; }
+
+/* ===== ДАНІ КЛІЄНТА ===== */
+.order-customer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #e9ecef;
+}
+
+.order-customer p {
+    margin: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* ===== КОМЕНТАР НА ВСЮ ШИРИНУ ===== */
+.order-customer p:last-child {
+    flex: 1 1 100%;
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+    color: #666;
+    font-style: italic;
+}
+
+/* ===== ТОВАРИ ===== */
+.order-items {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+}
+
+.order-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order-item-row:last-child {
+    border-bottom: none;
+}
+
+.order-item-row span:first-child {
+    flex: 2;
+    font-weight: 500;
+}
+
+.order-item-row span:nth-child(2) {
+    flex: 0.5;
+    text-align: center;
+    color: #888;
+}
+
+.order-item-row span:last-child {
+    flex: 1;
+    text-align: right;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* ===== ПІДВАЛ КАРТКИ ===== */
+.order-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 2px dashed #e9ecef;
+}
+
+.order-total {
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.order-total strong {
+    color: #27ae60;
+    font-size: 20px;
+}
+
+/* ===== КНОПКА ВИДАЛЕННЯ ===== */
+.btn-delete-order {
+    padding: 8px 18px;
+    background: transparent;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-delete-order:hover {
+    background: #e74c3c;
+    color: #fff;
+    transform: scale(1.03);
+}
+
+/* ===== ПОРОЖНІЙ СПИСОК ===== */
+.empty-message {
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    padding: 60px 0;
+}
+
+/* ============================================================ */
+/* ===== АДАПТИВНІСТЬ ========================================== */
+/* ============================================================ */
+
+@media (max-width: 768px) {
+    .admin-orders {
+        padding: 20px 12px;
+    }
+
+    .orders-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .orders-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .order-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-customer {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .order-item-row {
+        font-size: 13px;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .order-item-row span:first-child {
+        flex: 1 1 100%;
+    }
+
+    .order-item-row span:nth-child(2) {
+        flex: 0 0 auto;
+    }
+
+    .order-item-row span:last-child {
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    .order-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-delete-order {
+        width: 100%;
+        text-align: center;
+    }
+
+    .order-total strong {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-card {
+        padding: 14px;
+    }
+
+    .order-number {
+        font-size: 16px;
+    }
+
+    .status-select {
+        font-size: 12px;
+        padding: 6px 10px;
+        width: 100%;
+    }
+
+    .orders-filters button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}

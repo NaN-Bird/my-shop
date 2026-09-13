@@ -6,42 +6,151 @@
 .categories-title {
     font-size: 28px;
     font-weight: 700;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .category-card {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.category-card a {
+    display: block;
+    text-decoration: none;
 }
 
 .category-card img {
     width: 100%;
-    height: 250px;
+    height: 260px;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
 }
 
 .category-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.category-card:hover img {
+    transform: scale(1.03);
 }
 
 .category-label {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(255,255,255,0.85);
-    padding: 6px 12px;
-    border-radius: 4px;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 20px;
+    border-radius: 30px;
     font-weight: 600;
     font-size: 16px;
     color: #333;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: background 0.3s ease;
+}
+
+.category-card:hover .category-label {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* ===== АДАПТИВНІСТЬ ===== */
+
+/* Планшети та маленькі екрани (до 1024px) */
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .category-card img {
+        height: 220px;
+    }
+
+    .categories-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+/* Мобільні телефони (до 768px) */
+@media (max-width: 768px) {
+    .categories {
+        padding: 30px 12px;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .category-card img {
+        height: 180px;
+    }
+
+    .category-label {
+        font-size: 13px;
+        padding: 5px 14px;
+        bottom: 10px;
+    }
+
+    .categories-title {
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+}
+
+/* Дуже маленькі телефони (до 480px) */
+@media (max-width: 480px) {
+    .categories {
+        padding: 20px 8px;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .category-card img {
+        height: 140px;
+        border-radius: 8px;
+    }
+
+    .category-label {
+        font-size: 11px;
+        padding: 4px 10px;
+        bottom: 8px;
+        border-radius: 20px;
+    }
+
+    .categories-title {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .category-card img {
+        height: 200px;
+    }
 }
