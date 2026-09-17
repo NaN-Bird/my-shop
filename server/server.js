@@ -415,5 +415,71 @@ app.delete("/instagram/:id", async (req, res) => {
     }
 });
 
+// ===== ДИНАМІЧНИЙ SITEMAP =====
+app.get("/sitemap.xml", async (req, res) => {
+    try {
+        const baseUrl = "https://ptashka.com.ua";
+
+        // Отримуємо всі товари, категорії
+        const products = await Product.find();
+        const categories = await Category.find();
+
+        // Статичні сторінки
+        const staticPages = [
+            { url: "/", priority: "1.0", changefreq: "daily" },
+            { url: "/collection", priority: "0.9", changefreq: "weekly" },
+            { url: "/about", priority: "0.7", changefreq: "monthly" },
+            { url: "/delivery", priority: "0.7", changefreq: "monthly" },
+            { url: "/contacts", priority: "0.7", changefreq: "monthly" },
+            { url: "/reviews", priority: "0.6", changefreq: "weekly" },
+        ];
+
+        // Формуємо XML
+        let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+        xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+        // Статичні сторінки
+        staticPages.forEach(page => {
+            xml += `  <url>\n`;
+            xml += `    <loc>${baseUrl}${page.url}</loc>\n`;
+            xml += `    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n`;
+            xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+            xml += `    <priority>${page.priority}</priority>\n`;
+            xml += `  </url>\n`;
+        });
+
+        // Категорії
+        categories.forEach(cat => {
+            xml += `  <url>\n`;
+            xml += `    <loc>${baseUrl}/products/${cat.slug}</loc>\n`;
+            xml += `    <lastmod>${new Date(cat.createdAt).toISOString().split('T')[0]}</lastmod>\n`;
+            xml += `    <changefreq>weekly</changefreq>\n`;
+            xml += `    <priority>0.8</priority>\n`;
+            xml += `  </url>\n`;
+        });
+
+        // Товари
+        products.forEach(prod => {
+            xml += `  <url>\n`;
+            xml += `    <loc>${baseUrl}/products/${prod.category}/${prod._id}</loc>\n`;
+            xml += `    <lastmod>${new Date(prod.createdAt).toISOString().split('T')[0]}</lastmod>\n`;
+            xml += `    <changefreq>weekly</changefreq>\n`;
+            xml += `    <priority>0.6</priority>\n`;
+            xml += `  </url>\n`;
+        });
+
+        xml += `</urlset>`;
+
+        res.header("Content-Type", "application/xml");
+        res.send(xml);
+    } catch (err) {
+        console.error("Помилка sitemap:", err);
+        res.status(500).send("Помилка генерації sitemap");
+    }
+});
+
+// ===== ЗАПУСК СЕРВЕРА =====
+app.listen(5000, () => console.log("🚀 Server running on port 5000"));
+
 // ===== ЗАПУСК СЕРВЕРА =====
 app.listen(5000, () => console.log("🚀 Server running on port 5000"));
