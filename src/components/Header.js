@@ -45,10 +45,10 @@ export default function Header({ favorites = [], cart = [] }) {
                 </nav>
 
                 <div className="actions">
-                    <div className="phone-block">
+                    <a href="tel:+380501006507" className="phone-block">
                         <FaPhoneAlt className="icon" />
-                        <a href="tel:+380501006507" className="phone-number">+38 (050) 100‑65‑07</a>
-                    </div>
+                        <span className="phone-number">+38 (050) 100-65-07</span>
+                    </a>
 
                     <Link to="/favorites" className="favorites-link">
                         <FaHeart className="icon heart" />
