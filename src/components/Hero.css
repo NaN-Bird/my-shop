@@ -78,3 +78,56 @@
 .banner-link:hover {
     text-decoration: underline;
 }
+/* ===== МОБІЛЬНА ВЕРСІЯ ===== */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .hero-block {
+        flex: 1;
+        min-height: 300px;
+    }
+
+    .hero-banner {
+        width: 60%;
+        padding: 8px 12px;
+    }
+
+    .banner-text {
+        font-size: 16px;
+    }
+
+    .banner-link {
+        font-size: 14px;
+    }
+}
+
+/* Дуже маленькі телефони */
+@media (max-width: 480px) {
+    .hero {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .hero-block {
+        min-height: 250px;
+    }
+
+    .hero-banner {
+        width: 70%;
+        padding: 6px 10px;
+    }
+
+    .banner-text {
+        font-size: 14px;
+    }
+
+    .banner-link {
+        font-size: 12px;
+    }
+}
