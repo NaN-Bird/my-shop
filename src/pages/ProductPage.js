@@ -11,7 +11,7 @@ export default function ProductPage({ favorites, toggleFavorite, addToCart }) {
     const [thumbnails, setThumbnails] = useState([]); // додаткові фото
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`/api/products/${id}`)
             .then((res) => {
                 if (!res.ok) throw new Error("Товар не знайдено");
                 return res.json();

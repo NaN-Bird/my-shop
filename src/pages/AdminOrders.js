@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AdminOrders.css";
 
-const API_URL = "http://localhost:5000/orders";
+const API_URL = "/api/orders";
 
 const STATUS_OPTIONS = [
     { value: "new", label: "🆕 Нове" },

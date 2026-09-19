@@ -154,7 +154,7 @@ ${itemsText}
         if (success) {
             // ===== ЗБЕРІГАЄМО В БД (MongoDB) =====
             try {
-                const response = await fetch("http://localhost:5000/orders", {
+                const response = await fetch("/api/orders", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

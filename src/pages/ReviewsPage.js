@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./ReviewsPage.css";
 
-const API_URL = "http://localhost:5000/reviews";
+const API_URL = "/api/reviews";
 
 export default function ReviewsPage() {
     const [reviews, setReviews] = useState([]);

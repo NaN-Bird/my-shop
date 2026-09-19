@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AdminCategories.css";
 
-const API_URL = "http://localhost:5000/categories";
-const UPLOAD_URL = "http://localhost:5000/upload";
+const API_URL = "/api/categories";
+const UPLOAD_URL = "/api/upload";
 
 export default function AdminCategories() {
     const [categories, setCategories] = useState([]);

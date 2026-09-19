@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AdminInstagram.css";
 
-const API_URL = "http://localhost:5000/instagram";
-const UPLOAD_URL = "http://localhost:5000/upload";
+const API_URL = "/api/instagram";
+const UPLOAD_URL = "/api/upload";
 
 export default function AdminInstagram() {
     const [items, setItems] = useState([]);

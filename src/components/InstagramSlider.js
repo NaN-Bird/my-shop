@@ -9,7 +9,7 @@ export default function InstagramSlider() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:5000/instagram")
+        fetch("/api/instagram")
             .then((res) => res.json())
             .then((data) => {
                 setMedia(data);

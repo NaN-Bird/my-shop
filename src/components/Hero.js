@@ -7,7 +7,7 @@ export default function Hero() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:5000/categories")
+        fetch("/api/categories")
             .then((res) => res.json())
             .then((data) => {
                 // Беремо перші 2 категорії

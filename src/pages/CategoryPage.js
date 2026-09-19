@@ -11,7 +11,7 @@ export default function CategoryPage({ favorites, toggleFavorite }) {
 
     useEffect(() => {
         // Завантажуємо категорії (щоб знайти назву)
-        fetch("http://localhost:5000/categories")
+        fetch("/api/categories")
             .then((res) => res.json())
             .then((categories) => {
                 const found = categories.find((c) => c.slug === category);
@@ -20,7 +20,7 @@ export default function CategoryPage({ favorites, toggleFavorite }) {
             .catch((err) => console.error("Помилка категорій:", err));
 
         // Завантажуємо товари
-        fetch("http://localhost:5000/products")
+        fetch("/api/products")
             .then((res) => res.json())
             .then((data) => {
                 const filtered = data.filter((p) => p.category === category);
