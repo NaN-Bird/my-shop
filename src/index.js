@@ -11,3 +11,16 @@ root.render(
   </React.StrictMode>
 );
 
+// ===== РЕЄСТРАЦІЯ SERVICE WORKER =====
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker
+            .register('/service-worker.js')
+            .then((registration) => {
+                console.log('✅ SW зареєстровано:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('❌ SW помилка:', error);
+            });
+    });
+}
