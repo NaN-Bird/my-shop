@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Reviews.css";
 
-const API_URL = "http://localhost:5000/reviews";
+const API_URL = "/api/reviews";
 
 export default function Reviews() {
     const [reviews, setReviews] = useState([]);
